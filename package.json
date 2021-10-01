@@ -1,6 +1,6 @@
 {
   "name": "@ighostnb/cloud-mongo-backup",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library for free backups in cloud mongodb",
   "main": "index.js",
   "scripts": {

@@ -26,7 +26,7 @@ file Backup.js:
 
 other file: 
       
-      const backup = require('mongo-cloud-backup');
+      const backup = require('@ighostnb/mongo-cloud-backup');
       const Backup = require('./models/Backup'); // path to Backup.js
       
       // Then you need to register the dependencies to the models. For example:
