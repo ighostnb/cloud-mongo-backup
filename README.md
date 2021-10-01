@@ -7,7 +7,7 @@ installing:
 using:
   To use it, you need to create a mongoose model:
     
-    // file Backup.js: 
+// file Backup.js: 
     const mongoose = require('mongoose');
 
     const backupSchema = new mongoose.Schema({
@@ -22,8 +22,8 @@ using:
     });
 
     module.exports = mongoose.model('Backup', backupSchema);
-<----->
-    // other file: 
+
+// other file: 
       
       const backup = require('mongo-cloud-backup');
       const Backup = require('./models/Backup'); // path to Backup.js
