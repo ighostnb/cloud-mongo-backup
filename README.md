@@ -8,20 +8,21 @@ using:
   To use it, you need to create a mongoose model:
     
 // file Backup.js: 
-    const mongoose = require('mongoose');
+    
+      const mongoose = require('mongoose');
 
-    const backupSchema = new mongoose.Schema({
-      time: {
-        type: Number,
-        required: true,
-      },
-      data: {
-        type: String,
-        required: true,
-      },
-    });
+      const backupSchema = new mongoose.Schema({
+        time: {
+          type: Number,
+          required: true,
+        },
+        data: {
+          type: String,
+          required: true,
+        },
+      });
 
-    module.exports = mongoose.model('Backup', backupSchema);
+      module.exports = mongoose.model('Backup', backupSchema);
 
 // other file: 
       
