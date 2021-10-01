@@ -1,7 +1,7 @@
 Mongo backup library with mongoose
 
 installing: 
-  git clone https://github.com/ighostnb/cloud-mongo-backup.git ;
+  npm i @ighostnb/cloud-mongo-backup ;
   npm install {path}
   
 using:
