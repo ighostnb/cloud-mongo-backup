@@ -1,0 +1,27 @@
+{
+  "name": "mongo-cloud-backup",
+  "version": "1.0.0",
+  "description": "Library for free backups in cloud mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ighostnb/cloud-mongo-backup.git"
+  },
+  "keywords": [
+    "mongodb",
+    "backup",
+    "cloud"
+  ],
+  "author": "iGhost",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ighostnb/cloud-mongo-backup/issues"
+  },
+  "homepage": "https://github.com/ighostnb/cloud-mongo-backup#readme",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  }
+}
