@@ -2,7 +2,6 @@ Mongo backup library with mongoose
 
 installing: 
   npm i @ighostnb/cloud-mongo-backup ;
-  npm install {path}
   
 using:
   To use it, you need to create a mongoose model:
