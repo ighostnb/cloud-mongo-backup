@@ -1,15 +1,19 @@
-const fs = require('fs');
+import { writeFile, readFile } from 'fs';
 
-exports.getJsonFile = async (models, path) => {
-    let json = await getData(models);
+export async function getJsonFile(models, path) {
+    try {
+        let json = await getData(models);
     
-    fs.writeFile(path + Date.now() + '.txt', json, (error) => {
-        if (error) console.log(error);
-        console.log('The backup was successfully created');
-    });
-};
+        writeFile(path + Date.now() + '.txt', json, (error) => {
+            if (error) console.log(error);
+            console.log('The backup was successfully created');
+        });    
+    } catch (error) {
+        console.log(error);   
+    }
+}
 
-exports.saveBackupInCloud = async (models, Backup) => {
+export async function saveBackupInCloud(models, Backup) {
     try {
         let json = await getData(models);
 
@@ -24,73 +28,81 @@ exports.saveBackupInCloud = async (models, Backup) => {
     } catch (error) {
         console.log(error);
     }
-};
+}
 
-exports.restoreBackupFromCloud = async (models, backup, id) => {
-    backup.findById({ _id: id }).then(async (result) => {
-        if (!result) {
-            console.log('No such backup with same id');
-            return;
-        }
+export async function restoreBackupFromCloud(models, backup, id) {
+    try {
+        backup.findById({ _id: id }).then(async (result) => {
+            if (!result) {
+                console.log('No such backup with same id');
+                return;
+            }
+    
+            for (let i in models) {
+                await models[i].deleteMany();
+            }
+    
+            let json = result.data;
+            json = JSON.parse(json);
+    
+            for (let i in models) {
+                let data = json[models[i].collection.name];
+                data.forEach(async (el) => {
+                    let element = models[i](el);
+                    await element.save();
+                });
+            }
+    
+            console.log('Database was sucessfully restored from cloud');
+        });    
+    } catch (error) {
+        console.log(error);
+    }
+    
+}
 
-        for (var i in models) {
-            await models[i].deleteMany();
-        }
-
-        let json = result.data;
-        json = JSON.parse(json);
-
-        for (var i in models) {
-            let data = json[models[i].collection.name];
-            data.forEach(async (el) => {
-                let element = models[i](el);
-                await element.save();
-            });
-        }
-
-        console.log('Database was sucessfully restored from cloud');
-    });
-};
-
-exports.restoreBackupFromFile = async (filePath, models) => {
-    fs.readFile(filePath, async (err, data) => {
-        if (err) {
-          console.log('No such file or directory');
-          return;
-        }
-
-        let json = data.toString();
-
-        for (var i in models) {
-            await models[i].deleteMany();
-        }
-
-        json = JSON.parse(json);
-        for (var i in models) {
-            let data = json[models[i].collection.name];
-            data.forEach(async (el) => {
-                let element = models[i](el);
-                await element.save();
-            });
-        }
-
-        console.log('Database was sucessfully restored from file');
-    });
-
+export async function restoreBackupFromFile(filePath, models) {
+    try {
+        readFile(filePath, async (err, data) => {
+            if (err) {
+              console.log('No such file or directory');
+              return;
+            }
+    
+            let json = data.toString();
+    
+            for (let i in models) {
+                await models[i].deleteMany();
+            }
+    
+            json = JSON.parse(json);
+            for (let i in models) {
+                let data = json[models[i].collection.name];
+                data.forEach(async (el) => {
+                    let element = models[i](el);
+                    await element.save();
+                });
+            }
+    
+            console.log('Database was sucessfully restored from file');
+        });
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 async function getData(models) {
-    let json = {};
-    
     try {
+        let json = {};
+
         for (let i in models) {
             await models[i].find({}).then((result) => {
                 json[models[i].collection.name] = result;
             });
         }
+
+        return JSON.stringify(json);
     } catch (error) {
         console.log(error);
     }
-
-    return JSON.stringify(json);
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ighostnb/cloud-mongo-backup",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Library for free backups in cloud mongodb",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,9 @@
   "keywords": [
     "mongodb",
     "backup",
-    "cloud"
+    "cloud",
+    "cloud backup",
+    "mongo"
   ],
   "author": "iGhost",
   "license": "ISC",
