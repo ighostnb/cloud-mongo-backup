@@ -5,7 +5,7 @@ installing:
   
 using:
   To use it, you need to create a mongoose model:
-  ES5
+ES5
     
 file Backup.js: 
     
@@ -43,7 +43,7 @@ other file:
       
       backup.restoreBackupFromCloud(models, Backup, 'backup id from mongodb'); // Restores a database from cloud mongodb
       
-    ES6
+ES6
     
 file Backup.js:
     
