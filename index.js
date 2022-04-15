@@ -1,4 +1,6 @@
-import { writeFile, readFile } from 'fs';
+import fs from 'fs';
+
+const { writeFile, readFile } = fs;
 
 export async function getJsonFile(models, path) {
     try {

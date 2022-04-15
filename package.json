@@ -1,10 +1,12 @@
 {
   "name": "@ighostnb/cloud-mongo-backup",
-  "version": "2.0.0",
+  "version": "2.0.1",
+  "type": "module",
   "description": "Library for free backups in cloud mongodb",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "url": "git://github.com/ighostnb/cloud-mongo-backup.git"
